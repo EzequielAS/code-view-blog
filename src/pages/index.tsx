@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next'
-import { getPosts, Post } from '../services/hooks/usePosts'
+import { getPosts, Post, usePosts } from '../services/hooks/usePosts'
 import { Posts } from '../patterns/Posts'
 
 interface HomeProps {
@@ -7,11 +7,11 @@ interface HomeProps {
 }
 
 export default function Home({ posts }: HomeProps) {
+  const { data } = usePosts(1, {posts})
 
-  
   return (
     <Posts 
-        posts={posts}
+        posts={data?.posts}
     />
   )
 }
