@@ -3,14 +3,14 @@ import { Post } from '../../services/hooks/usePosts'
 import { PostCard } from '../PostCard'
 
 interface PostsProps {
-    posts: Post[] | undefined;
+    posts: Post[];
 }
 
 export function Posts({ posts }: PostsProps) {
     return (
         <Container>
         {
-            posts?.map((post, index) => (
+            posts.map((post, index) => (
             <PostCard
                 key={post.id}
                 datas={{
