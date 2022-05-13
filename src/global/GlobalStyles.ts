@@ -22,20 +22,33 @@ export default createGlobalStyle`
     body {
         -webkit-font-smoothing: antialiased;   
         background: ${({ theme }) => theme.colors.background};
+        animation: fadeIn 1s ease-in;
 
-        /* &::-webkit-scrollbar-track {
-            background-color: #FFF;
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
         }
+
         &::-webkit-scrollbar {
             width: 5px;
         }
+
         &::-webkit-scrollbar-thumb {
-            background: #C3C3C3;
+            background: ${({ theme }) => theme.colors.onbackgroundFade};
             border-radius: 4px;
         }
+
         scrollbar-width: thin;
-        scrollbar-color: #C3C3C3;
-        scrollbar-track-color: #FFF; */
+        scrollbar-color: ${({ theme }) => theme.colors.onbackgroundFade};
+        scrollbar-track-color: transparent;
+
+        @keyframes fadeIn {
+            0% {
+	            overflow: hidden;  
+            }
+            100% {
+                overflow: auto;
+            }
+        }
     }
 
     body, input, button {

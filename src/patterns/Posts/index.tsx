@@ -1,27 +1,19 @@
 import { Container } from './styles'
-import { Post } from '../../services/hooks/usePosts'
-import { PostCard } from '../PostCard'
+import { Post, PostCard } from '../PostCard'
 
-interface PostsProps {
-    posts: Post[] | undefined;
+export interface PostsProps {
+    posts: Post[];
 }
 
 export function Posts({ posts }: PostsProps) {
     return (
         <Container>
         {
-            posts?.map((post, index) => (
+            posts.map(post => (
             <PostCard
-                key={post.id}
-                datas={{
-                img: post.feature_image,
-                id: post.id,
-                author: post.primary_author.name,
-                title: post.title,
-                date: post.published_at,
-                tag: post.primary_tag.name,
-                index
-                }}
+                key={post.slug}
+                slug={post.slug}
+                data={post.data}
             />
             ))
         }

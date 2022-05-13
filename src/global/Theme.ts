@@ -16,7 +16,7 @@ export default {
      },
      typography: {
         sizes: {
-            xsmall: '1rem',
+            xsmall: '0.8rem',
             small: '1.2rem',
             medium: '1.6rem',
             large: '2.4rem',
@@ -32,6 +32,7 @@ export default {
      },
      button: {
        sizes: {
+        xsmall: 0.8,
         small: 1,
         medium: 1.5,
         large: 2,

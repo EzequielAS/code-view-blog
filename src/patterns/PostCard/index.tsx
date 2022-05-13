@@ -1,3 +1,5 @@
+import { formatDistanceToNowStrict } from 'date-fns'
+import { pt } from 'date-fns/locale'
 import { Chip } from '../../components/Chip'
 import { Typography } from '../../components/Typography'
 
@@ -9,22 +11,32 @@ import {
     ChipsContainer 
 } from './styles'
 
-interface PostProps {
-    datas: {
-        img: string;
-        author: string;
-        tag: string;
-        title: string;
-        id: string;
-        date: string;
-        index: number;
-    }
+
+export interface Post {
+    slug: string;
+    data: {
+        tag: string,
+        date: string,
+        title: string,
+        author: string,
+        imageURL: string,
+        index: number
+    };
 }
 
-export function PostCard({ datas }: PostProps) {
+
+export function PostCard({ data }: Post) {
+    const dateFormatted = formatDistanceToNowStrict(
+        new Date(data.date), 
+        { 
+            addSuffix: true,
+            locale: pt 
+        }
+    )
+
     return (
-        <Container index={datas.index}>
-            <ImageContainer img={datas.img}/>
+        <Container index={data.index}>
+            <ImageContainer img={data.imageURL}/>
 
             <PostDatasContainer>
                 <Line />
@@ -34,22 +46,22 @@ export function PostCard({ datas }: PostProps) {
                     tag='h2'
                     size='large'
                 >
-                    {datas.title}
+                    {data.title}
                 </Typography>
 
                 <ChipsContainer>
                     <Chip 
-                        title={datas.tag}
+                        title={data.tag}
                         type='code'
                     />
 
                     <Chip 
-                        title={datas.author}
+                        title={data.author}
                         type='author'
                     />
 
                     <Chip 
-                        title='2 dias atrás'
+                        title={dateFormatted}
                         type='date'
                     />
                 </ChipsContainer>

@@ -3,17 +3,17 @@ import { ThemeProvider } from 'styled-components'
 import GlobalStyles from '../global/GlobalStyles'
 import theme from '../global/Theme'
 import { Header } from '../patterns/Header'
-import { QueryClientProvider } from 'react-query'
-import { queryClient } from '../services/queryClient'
+
+import { PrismicProvider } from '@prismicio/react'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <Header />
-        <Component {...pageProps} />
+      <PrismicProvider>
+          <Header />
+          <Component {...pageProps} />
         <GlobalStyles />
-      </QueryClientProvider>
+      </PrismicProvider>
     </ThemeProvider>
   )
 }
