@@ -10,11 +10,11 @@ export function Posts({ posts }: PostsProps) {
         <Container>
         {
             posts.map(post => (
-            <PostCard
-                key={post.slug}
-                slug={post.slug}
-                data={post.data}
-            />
+                <PostCard
+                    key={post.slug}
+                    slug={post.slug}
+                    data={post.data}
+                />
             ))
         }
         </Container>

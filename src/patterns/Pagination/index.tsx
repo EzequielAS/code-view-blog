@@ -8,18 +8,22 @@ interface PaginationProps {
     currentPage: number;
     total_pages: number;
     next_page: string | null;
+    route?: string;
 }
 
 export function Pagination({ 
     currentPage, 
     total_pages,
-    next_page 
+    next_page,
+    route
 }: PaginationProps) {
+    const routeRedirect = route ? route : 'page'
     const isLeftButtonVisible = currentPage !== 1
-    const nextPageLink = `/page/${currentPage + 1}`
+    
+    const nextPageLink = `/${routeRedirect}/${currentPage + 1}`
     const prevPageLink = currentPage === 2 
-        ? '/' 
-        : `/page/${currentPage - 1}`
+        ? `/${routeRedirect === 'page' ? '' : route}` 
+        : `/${routeRedirect}/${currentPage - 1}`
 
 
     if(!next_page) 

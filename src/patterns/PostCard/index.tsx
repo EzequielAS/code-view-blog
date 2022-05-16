@@ -1,6 +1,6 @@
 import { formatDistanceToNowStrict } from 'date-fns'
 import { pt } from 'date-fns/locale'
-import { Chip } from '../../components/Chip'
+import { Chip, ChipProps } from '../../components/Chip'
 import { Typography } from '../../components/Typography'
 
 import { 
@@ -10,7 +10,6 @@ import {
     Line,
     ChipsContainer 
 } from './styles'
-
 
 export interface Post {
     slug: string;
@@ -24,7 +23,6 @@ export interface Post {
     };
 }
 
-
 export function PostCard({ data }: Post) {
     const dateFormatted = formatDistanceToNowStrict(
         new Date(data.date), 
@@ -33,6 +31,21 @@ export function PostCard({ data }: Post) {
             locale: pt 
         }
     )
+
+    const chips: Record<string, ChipProps> = {
+        code: {
+            type: 'code',
+            title: data.tag
+        },
+        author: {
+            type: 'author',
+            title: data.author
+        },
+        date: {
+            type: 'date',
+            title: dateFormatted
+        }
+    }
 
     return (
         <Container index={data.index}>
@@ -50,20 +63,13 @@ export function PostCard({ data }: Post) {
                 </Typography>
 
                 <ChipsContainer>
-                    <Chip 
-                        title={data.tag}
-                        type='code'
-                    />
-
-                    <Chip 
-                        title={data.author}
-                        type='author'
-                    />
-
-                    <Chip 
-                        title={dateFormatted}
-                        type='date'
-                    />
+                    {Object.entries(chips).map(([key, datas]) => (
+                        <Chip 
+                            key={key}
+                            title={datas.title}
+                            type={datas.type}
+                        />
+                    ))}
                 </ChipsContainer>
             </PostDatasContainer>
         </Container>

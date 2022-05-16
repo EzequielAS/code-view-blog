@@ -2,15 +2,15 @@ import { FaTerminal, FaUserAlt, FaCalendar } from 'react-icons/fa'
 
 import { Container } from './styles'
 
-interface ChipProps {
-    title: string;
-    type: 'code' | 'author' | 'date'
+const icons = {
+    code: <FaTerminal />,
+    author: <FaUserAlt />,
+    date: <FaCalendar />
 }
 
-const icons = {
-    'code': <FaTerminal />,
-    'author': <FaUserAlt />,
-    'date': <FaCalendar />
+export interface ChipProps {
+    title: string;
+    type: keyof typeof icons;
 }
 
 export function Chip({ title, type }: ChipProps) {
