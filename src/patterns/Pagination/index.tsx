@@ -21,8 +21,8 @@ export function Pagination({
     const isLeftButtonVisible = currentPage !== 1
     
     const nextPageLink = `/${routeRedirect}/${currentPage + 1}`
-    const prevPageLink = currentPage === 2 
-        ? `/${routeRedirect === 'page' ? '' : route}` 
+    const prevPageLink = currentPage === 2 && routeRedirect === 'page' 
+        ? '/' 
         : `/${routeRedirect}/${currentPage - 1}`
 
 
