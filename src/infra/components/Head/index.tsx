@@ -10,7 +10,7 @@ export function Head({ title, children }: HeadProps) {
   return (
     <NextHead>
       <title>{title}</title>
-      <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+      <link rel="shortcut icon" href="/logo.png" type="image/png" />
       {children}
     </NextHead>
   )
