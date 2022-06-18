@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { PageWithPostProps } from '../../global/interfaces'
+import { Head } from '../../infra/components/Head'
 import { Pagination } from '../../patterns/Pagination'
 import { Posts } from '../../patterns/Posts'
 import { createClient } from '../../services/prismic'
@@ -17,6 +18,8 @@ export default function Tag({
 
   return (
 	<>
+    <Head title={`CodeView | ${currentTag}`}/>
+
 	  <Posts 
 		  posts={posts}
 	  />
@@ -45,7 +48,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const currentPage = Number(arrayParams[1]) || 1
 
   const response = await client.getByTag(currentTag ,{
-      pageSize: 1,
+      pageSize: 9,
       page: currentPage,
       fetch: [
         'post.title', 

@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { PageWithPostProps } from '../../global/interfaces'
+import { Head } from '../../infra/components/Head'
 import { Pagination } from '../../patterns/Pagination'
 import { Posts } from '../../patterns/Posts'
 import { createClient } from '../../services/prismic'
@@ -15,6 +16,8 @@ export default function Page({
 
   return (
 	<>
+    <Head title='CodeView' />
+
 	  <Posts 
 		  posts={posts}
 	  />

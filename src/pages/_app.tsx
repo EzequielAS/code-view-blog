@@ -3,6 +3,8 @@ import { ThemeProvider } from 'styled-components'
 import GlobalStyles from '../global/GlobalStyles'
 import theme from '../global/Theme'
 import { Header } from '../patterns/Header'
+import { Footer } from '../patterns/Footer'
+
 
 import { PrismicProvider } from '@prismicio/react'
 
@@ -12,6 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <PrismicProvider>
           <Header />
           <Component {...pageProps} />
+          <Footer />
         <GlobalStyles />
       </PrismicProvider>
     </ThemeProvider>

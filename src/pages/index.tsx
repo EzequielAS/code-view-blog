@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next'
 import { PageWithPostProps } from '../global/interfaces'
+import { Head } from '../infra/components/Head'
 import { Pagination } from '../patterns/Pagination'
 import { Posts } from '../patterns/Posts'
 import { createClient } from '../services/prismic'
@@ -11,6 +12,8 @@ export default function Home({
 }: PageWithPostProps) {
   return (
     <>
+      <Head title='CodeView' />
+
       <Posts 
           posts={posts}
       />

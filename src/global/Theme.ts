@@ -17,6 +17,7 @@ export default {
      },
      typography: {
         sizes: {
+            xxsmall: '0.6rem',
             xsmall: '0.8rem',
             small: '1.2rem',
             medium: '1.6rem',

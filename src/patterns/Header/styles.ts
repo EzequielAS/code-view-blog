@@ -54,7 +54,3 @@ export const Line = styled.div`
 export const ContainerLinks = styled.div`
     display: flex;
 `
-
-export const LinkActive = styled.div`
-  background: red;
-`

@@ -18,6 +18,7 @@ export const Container = styled.article<ContainerProps>`
     overflow: hidden;
     animation-duration: ${({ index }) => `${0.6 + ((index/10) * 3)}s`};
     animation-name: slidein;
+    cursor: pointer;
 
     @media (max-width: 750px) {
         width: 96%;

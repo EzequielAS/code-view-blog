@@ -2,6 +2,7 @@ import { formatDistanceToNowStrict } from 'date-fns'
 import { pt } from 'date-fns/locale'
 import { Chip, ChipProps } from '../../components/Chip'
 import { Typography } from '../../components/Typography'
+import { Link } from '../../infra/components/Link'
 
 import { 
     Container,
@@ -23,7 +24,7 @@ export interface Post {
     };
 }
 
-export function PostCard({ data }: Post) {
+export function PostCard({ slug, data }: Post) {
     const dateFormatted = formatDistanceToNowStrict(
         new Date(data.date), 
         { 
@@ -48,30 +49,32 @@ export function PostCard({ data }: Post) {
     }
 
     return (
-        <Container index={data.index}>
-            <ImageContainer img={data.imageURL}/>
+        <Link href={`/post/${slug}`}>
+          <Container index={data.index}>
+              <ImageContainer img={data.imageURL}/>
 
-            <PostDatasContainer>
-                <Line />
+              <PostDatasContainer>
+                  <Line />
 
-                <Typography
-                    weight='bolder'
-                    tag='h2'
-                    size='large'
-                >
-                    {data.title}
-                </Typography>
+                  <Typography
+                      weight='bolder'
+                      tag='h2'
+                      size='large'
+                  >
+                      {data.title}
+                  </Typography>
 
-                <ChipsContainer>
-                    {Object.entries(chips).map(([key, datas]) => (
-                        <Chip 
-                            key={key}
-                            title={datas.title}
-                            type={datas.type}
-                        />
-                    ))}
-                </ChipsContainer>
-            </PostDatasContainer>
-        </Container>
+                  <ChipsContainer>
+                      {Object.entries(chips).map(([key, datas]) => (
+                          <Chip 
+                              key={key}
+                              title={datas.title}
+                              type={datas.type}
+                          />
+                      ))}
+                  </ChipsContainer>
+              </PostDatasContainer>
+          </Container>
+        </Link>
     )
 }
