@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { Button } from '../../components/Button'
 import { Logo } from '../Logo'
 
@@ -6,34 +7,56 @@ import {
     Content, 
     ContainerLinks, 
     Line, 
-    FadeLine
+    FadeLine,
 } from "./styles"
 
 const listButtons = ["Frontend", "Backend"]
 
 export function Header() {
-    return(
-        <Container>
-            <Content>
-                <Logo />
+  const navigate = useRouter()
+  const currentRoute = navigate.asPath
 
-                <Line />
+  const isRouteMatching = (button: string) => {
+    const sanitizedRoute = currentRoute.slice(1)
 
-                <ContainerLinks>
-                    {
-                        listButtons.map(button => (
-                            <Button 
-                                key={button}
-                                link={`/${button}`}
-                                title={button}
-                                buttonStyle='text'
-                            />
-                        ))
-                    }
-                </ContainerLinks>
-            </Content>
+    if(sanitizedRoute.split('/').length === 3) {
+      const rootRoute = sanitizedRoute.slice(0, -2)
 
-            <FadeLine />
-        </Container>
-    )
+      return rootRoute === `tag/${button}`
+    }
+
+    return sanitizedRoute === `tag/${button}`
+  }
+
+  const ButtonsContainer = (
+    <ContainerLinks>
+      {listButtons.map(button => {
+        const isRouteActive = isRouteMatching(button)
+
+        return( 
+          <Button 
+            key={button}
+            link={`/tag/${button}`}
+            title={button}
+            buttonStyle='text'
+            color={isRouteActive ? 'primary' : 'onbackground'}
+          />
+        )
+      })}
+    </ContainerLinks>
+  )
+
+  return(
+    <Container>
+      <Content>
+        <Logo />
+
+        <Line />
+
+        {ButtonsContainer}
+      </Content>
+
+      <FadeLine />
+    </Container>
+  )
 }

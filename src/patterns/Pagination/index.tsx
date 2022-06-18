@@ -17,21 +17,17 @@ export function Pagination({
     next_page,
     route
 }: PaginationProps) {
-    const routeRedirect = route ? route : 'page'
-    const isLeftButtonVisible = currentPage !== 1
+    const routeRedirect = route || 'page'
+    const isPrevButtonVisible = currentPage !== 1
     
     const nextPageLink = `/${routeRedirect}/${currentPage + 1}`
     const prevPageLink = currentPage === 2 && routeRedirect === 'page' 
         ? '/' 
         : `/${routeRedirect}/${currentPage - 1}`
 
-
-    if(!next_page) 
-        return <></>
-
     return (
         <Container>
-            {isLeftButtonVisible &&
+            {isPrevButtonVisible &&
                 <Button 
                     size='small'
                     background='background'
@@ -49,14 +45,16 @@ export function Pagination({
                 {currentPage} de {total_pages}
             </Typography>
 
-            <Button 
-                size='small'
-                background='background'
-                color='onbackground'
-                iconRight={<FaArrowRight />}
-                link={nextPageLink}
-                fullRounded
-            />
+            {next_page && (
+                <Button 
+                    size='small'
+                    background='background'
+                    color='onbackground'
+                    iconRight={<FaArrowRight />}
+                    link={nextPageLink}
+                    fullRounded
+                />
+            )}
         </Container>
     )
 }

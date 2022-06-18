@@ -5,13 +5,15 @@ import { Pagination } from '../../patterns/Pagination'
 import { Posts } from '../../patterns/Posts'
 import { createClient } from '../../services/prismic'
 
-export default function Page({ 
+export default function Tag({ 
   posts,
   next_page,
   total_pages 
 }: PageWithPostProps) {
 	const navigate = useRouter()
-  const currentPage = Number(navigate.query.page)
+  const arrayQuery = navigate.query.tag || []
+  const currentTag = arrayQuery[0]
+  const currentPage = Number(arrayQuery[1]) || 1
 
   return (
 	<>
@@ -23,6 +25,7 @@ export default function Page({
       currentPage={currentPage}
       total_pages={total_pages}
       next_page={next_page}
+      route={`tag/${currentTag}`}
 	  />
 	</>
   )
@@ -37,16 +40,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const client = createClient()
-  const currentPage = Number(params?.page)
+  const arrayParams = params?.tag || []
+  const currentTag = arrayParams[0]
+  const currentPage = Number(arrayParams[1]) || 1
 
-  const response = await client.get({
-    pageSize: 9,
-    page: currentPage,
-    fetch: [
-      'post.title', 
-      'post.author', 
-      'post.image'
-    ],
+  const response = await client.getByTag(currentTag ,{
+      pageSize: 1,
+      page: currentPage,
+      fetch: [
+        'post.title', 
+        'post.author', 
+        'post.image'
+      ],
   })
 
   if(response.results.length === 0)

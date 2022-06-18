@@ -16,10 +16,6 @@ export const Content = styled.div`
     justify-content: center;
     gap: 1.5rem;
 
-    /* @media (max-width: 375px) {
-        justify-content: center;
-    } */
-
     @keyframes appear {
         from {
             opacity: 0;
@@ -57,4 +53,8 @@ export const Line = styled.div`
 
 export const ContainerLinks = styled.div`
     display: flex;
+`
+
+export const LinkActive = styled.div`
+  background: red;
 `

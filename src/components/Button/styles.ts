@@ -22,30 +22,32 @@ export const Container = styled.button<ContainerProps>`
          theme 
     }) => `
         background: ${
-            buttonStyle === 'text'  ||  buttonStyle === 'outlined'
-            ? 'none'
-            : background 
-            ? background 
-            : theme.colors.primary
+          background 
+          ? background 
+          : buttonStyle === 'text'  ||  buttonStyle === 'outlined'
+          ? 'none'
+          : theme.colors.primary
         };
         color: ${
-            buttonStyle === 'text' 
-            ? theme.colors.onbackground
-            : buttonStyle === 'outlined'
-            ? theme.colors.primary
-            : color 
-            ? color 
-            : theme.colors.onprimary
+          color 
+          ? color 
+          : buttonStyle === 'text' 
+          ? theme.colors.onbackground
+          : buttonStyle === 'outlined'
+          ? theme.colors.primary
+          : theme.colors.onprimary
         };
+
         border: ${
-            buttonStyle === 'text' 
-            ? 'none'
-            : buttonStyle === 'outlined'
-            ? `1px solid ${theme.colors.primary}`
-            : border 
-            ? `1px solid ${border}`
-            : 'none'
+          border 
+          ? `1px solid ${border}`
+          : buttonStyle === 'text' 
+          ? 'none'
+          : buttonStyle === 'outlined'
+          ? `1px solid ${theme.colors.primary}`
+          : 'none'
         }; 
+        
         border-radius: ${
             fullRounded 
             ? '100%'

@@ -1,20 +1,14 @@
 import { GetServerSideProps } from 'next'
+import { PageWithPostProps } from '../global/interfaces'
 import { Pagination } from '../patterns/Pagination'
-import { Post } from '../patterns/PostCard'
 import { Posts } from '../patterns/Posts'
 import { createClient } from '../services/prismic'
-
-interface HomeProps {
-  posts: Post[];
-  next_page: string | null;
-  total_pages: number;
-}
 
 export default function Home({ 
   posts,
   next_page,
   total_pages 
-}: HomeProps) {
+}: PageWithPostProps) {
   return (
     <>
       <Posts 
@@ -30,11 +24,12 @@ export default function Home({
   )
 }
 
-export const getStaticProps: GetServerSideProps = async ({}) => {
+export const getServerSideProps: GetServerSideProps = async ({}) => {
   const client = createClient()
 
   const response = await client.get({
-    pageSize: 1,
+    pageSize: 9,
+    page: 1,
     fetch: [
       'post.title', 
       'post.author', 
