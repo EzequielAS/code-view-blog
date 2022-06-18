@@ -1,7 +1,7 @@
-import { Button } from '../../components/Button'
-import { Typography } from '../../components/Typography'
-import { Head } from '../../infra/components/Head'
-import { Container } from './styles'
+import { Button } from '../components/Button'
+import { Typography } from '../components/Typography'
+import { Head } from '../infra/components/Head'
+import { Container } from '../styles/404'
 
 export default function NotFound() {
   return (
