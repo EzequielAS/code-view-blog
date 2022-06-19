@@ -56,6 +56,7 @@ export const ArticleStyled = styled.article`
 
   p {
     text-align: justify;
+    line-height: 1.3rem;
   }
 
   p + p {
