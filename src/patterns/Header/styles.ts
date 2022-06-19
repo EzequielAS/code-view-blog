@@ -1,13 +1,21 @@
 import styled from 'styled-components'
 
-export const Container = styled.header`
-   width: 100%;
+export const StickyContainer = styled.div`
+ position: sticky;
+ top: 0;
+
+ background: ${({ theme }) => theme.colors.background};
+`
+
+export const HeaderStyled = styled.header`
+  width: 100%;
+  padding: 1rem 0;
 `
 
 export const Content = styled.div`
     max-width: 1200px;
     width: 96%;
-    margin: 1rem auto;
+    margin: 0 auto;
     animation-duration: 1.2s;
     animation-name: appear;
 

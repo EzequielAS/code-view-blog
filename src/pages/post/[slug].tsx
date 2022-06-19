@@ -1,12 +1,28 @@
 import { format } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
 import { Typography } from '../../components/Typography'
 import { Head } from '../../infra/components/Head'
 import { createClient } from '../../services/prismic'
 
-import { Container, ImgStyled, PostInfo, Details } from '../../styles/Post'
+import { 
+  Container, 
+  ImgStyled, 
+  PostInfo, 
+  Details,
+  PostContent,
+  ArticleStyled,
+  ImageArticle 
+} from '../../styles/Post'
+
+interface PostContent {
+  heading: string;
+  body: {
+    type: string,
+    text?: string,
+    url?: string;
+  }[];
+}
 
 interface Post {
   date: string,
@@ -14,6 +30,7 @@ interface Post {
   subtitle: string,
   author: string,
   image: string,
+  content: PostContent[];
 }
 
 interface PostProps {
@@ -21,7 +38,6 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
-  const router = useRouter()
   const datePost = new Date(post.date)
 
   const publishedDateFormatted = format(
@@ -33,12 +49,11 @@ export default function Post({ post }: PostProps) {
 
   return (
     <>
-      <Head title={`CodeView | ${router.query.slug}`} />
+      <Head title={`CodeView | ${post.title}`} />
 
       <Container>
         <ImgStyled 
           src={post.image} 
-          height={300}
           alt="" 
         />
 
@@ -75,6 +90,40 @@ export default function Post({ post }: PostProps) {
           </Typography>
         </PostInfo>
 
+        <PostContent>
+          {post.content.map(postContent => {
+            return (
+              <ArticleStyled key={postContent.heading}>
+                <Typography size='medium' tag="h3">
+                  {postContent.heading}
+                </Typography>
+
+                {postContent.body.map(bodyContent => {
+                  if(bodyContent.type === 'paragraph') {
+                    return (
+                      <Typography
+                        weight='light'
+                        key={bodyContent.text}
+                      >
+                        {bodyContent.text}
+                      </Typography>
+                    )
+                  }
+
+                  if(bodyContent.type === 'image') {
+                    return (
+                      <ImageArticle 
+                        key={bodyContent.url}
+                        src={bodyContent.url} 
+                        alt=''
+                      />
+                    )
+                  }
+                })}
+              </ArticleStyled>
+            )
+          })}
+        </PostContent>
       </Container>
     </>
   )
@@ -93,14 +142,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const response = await client.getByUID('post', slug)
 
-  // console.log(response.data.content[0].body[2].spans)
-
   const post = {
     date: response.first_publication_date,
     title: response.data.title,
     subtitle: response.data.subtitle,
     author: response.data.author,
     image: response.data.image.url,
+    content: response.data.content
   }
 
   return {

@@ -3,11 +3,12 @@ import { Button } from '../../components/Button'
 import { Logo } from '../Logo'
 
 import { 
-    Container, 
-    Content, 
-    ContainerLinks, 
-    Line, 
-    FadeLine,
+  StickyContainer,
+  HeaderStyled, 
+  Content, 
+  ContainerLinks, 
+  Line, 
+  FadeLine,
 } from "./styles"
 
 const listButtons = ["Frontend", "Backend"]
@@ -47,16 +48,18 @@ export function Header() {
   )
 
   return(
-    <Container>
-      <Content>
-        <Logo />
+    <StickyContainer>
+      <HeaderStyled>
+        <Content>
+          <Logo />
 
-        <Line />
+          <Line />
 
-        {ButtonsContainer}
-      </Content>
+          {ButtonsContainer}
+        </Content>
+      </HeaderStyled>
 
       <FadeLine />
-    </Container>
+    </StickyContainer>
   )
 }
