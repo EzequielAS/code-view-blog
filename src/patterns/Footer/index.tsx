@@ -26,6 +26,8 @@ const socialMedias = {
 }
 
 export function Footer() {
+  const year = new Date().getFullYear()
+
   return (
     <Container>
       <Content>
@@ -39,7 +41,7 @@ export function Footer() {
         
         <BlogInfo>
           <Typography size='xsmall' weight='bold'>
-            CodeView © 2022
+            CodeView © {year}
           </Typography>
           
           <Typography size='xxsmall' weight='light'>
