@@ -1,4 +1,11 @@
-import Document, { DocumentContext, DocumentInitialProps } from 'next/document'
+import Document, { 
+  DocumentContext, 
+  DocumentInitialProps, 
+  Html, 
+  Main, 
+  NextScript,
+  Head 
+} from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
@@ -28,5 +35,22 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+
+  render() {
+    return (
+        <Html lang="en">
+          <Head>
+            <link rel="shortcut icon" href="/logo.png" type="image/png" />
+            <link rel="preconnect" href="https://fonts.googleapis.com" /> 
+            <link rel="preconnect" href="https://fonts.gstatic.com" /> 
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&display=swap" rel="stylesheet" />
+          </Head>
+          <body>
+              <Main />
+              <NextScript />
+          </body>
+        </Html>
+    );
   }
 }
