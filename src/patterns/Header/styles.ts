@@ -5,6 +5,7 @@ export const StickyContainer = styled.div`
  top: 0;
 
  background: ${({ theme }) => theme.colors.background};
+ z-index: 99;
 `
 
 export const HeaderStyled = styled.header`
