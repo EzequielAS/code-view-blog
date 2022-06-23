@@ -11,6 +11,7 @@ export const ImgStyled = styled.img`
   height: 20rem;
   object-fit: cover;
   object-position: center;
+  border-radius: 8px;
 `
 
 export const PostInfo = styled.div`
@@ -51,7 +52,7 @@ export const ArticleStyled = styled.article`
   flex-direction: column;
 
   h3 {
-    margin: 4rem 0 1rem 0;
+    margin: 3.5rem 0 1rem 0;
   }
 
   p {
@@ -59,15 +60,26 @@ export const ArticleStyled = styled.article`
     line-height: 1.3rem;
   }
 
+  img {
+    width: 100%;
+    margin: 1rem 0;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  ul {
+    margin-top: 0.125rem;
+  }
+
+  li {
+    margin-left: 1rem;
+  }
+
+  a {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+
   p + p {
     margin-top: 0.5rem;
   }
-`
-
-export const ImageArticle = styled.img`
-  height: 15rem;
-  width: 100%;
-  margin-top: 1rem;
-  object-fit: contain;
-  object-position: center;
 `

@@ -1,3 +1,5 @@
+import { PrismicRichText } from '@prismicio/react'
+import { RTNode } from '@prismicio/types'
 import { format } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { GetStaticPaths, GetStaticProps } from 'next'
@@ -12,17 +14,7 @@ import {
   Details,
   PostContent,
   ArticleStyled,
-  ImageArticle 
 } from '../../styles/Post'
-
-interface PostContent {
-  heading: string;
-  body: {
-    type: string,
-    text?: string,
-    url?: string;
-  }[];
-}
 
 interface Post {
   date: string,
@@ -30,7 +22,10 @@ interface Post {
   subtitle: string,
   author: string,
   image: string,
-  content: PostContent[];
+  content: {
+    heading: string;
+    body?: [] | [RTNode, ...RTNode[]] | null;
+  }[];
 }
 
 interface PostProps {
@@ -98,28 +93,21 @@ export default function Post({ post }: PostProps) {
                   {postContent.heading}
                 </Typography>
 
-                {postContent.body.map(bodyContent => {
-                  if(bodyContent.type === 'paragraph') {
-                    return (
-                      <Typography
-                        weight='light'
-                        key={bodyContent.text}
-                      >
-                        {bodyContent.text}
+                <PrismicRichText 
+                  field={postContent.body}
+                  components={{
+                    paragraph: ({ children }) => (
+                      <Typography weight='light'>
+                        {children}
+                      </Typography>
+                    ),
+                    listItem: ({ children }) => (
+                      <Typography tag="li" weight='light'>
+                        {children}
                       </Typography>
                     )
-                  }
-
-                  if(bodyContent.type === 'image') {
-                    return (
-                      <ImageArticle 
-                        key={bodyContent.url}
-                        src={bodyContent.url} 
-                        alt=''
-                      />
-                    )
-                  }
-                })}
+                  }}
+                />
               </ArticleStyled>
             )
           })}
@@ -142,6 +130,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const response = await client.getByUID('post', slug)
 
+
   const post = {
     date: response.first_publication_date,
     title: response.data.title,
@@ -155,5 +144,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: { 
       post
     }, 
+    revalidate: 60 * 60 * 24 // 24 horas
   }
 }
