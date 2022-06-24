@@ -11,7 +11,7 @@ export const ImgStyled = styled.img`
   height: 20rem;
   object-fit: cover;
   object-position: center;
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
 `
 
 export const PostInfo = styled.div`
@@ -43,8 +43,9 @@ export const Details = styled.div`
   margin-top: 1rem;
 `
 
-export const PostContent = styled.div``
-
+export const PostContent = styled.div`
+  margin-top: 4rem;
+`
 
 export const ArticleStyled = styled.article`
   display: flex;
