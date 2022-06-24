@@ -20,35 +20,25 @@ export default createGlobalStyle`
     }
 
     body {
-        -webkit-font-smoothing: antialiased;   
-        background: ${({ theme }) => theme.colors.background};
-        animation: fadeIn 1s ease-in;
+      -webkit-font-smoothing: antialiased;   
+      background: ${({ theme }) => theme.colors.background};
 
-        &::-webkit-scrollbar-track {
-            background-color: transparent;
-        }
+      &::-webkit-scrollbar-track {
+          background-color: transparent;
+      }
 
-        &::-webkit-scrollbar {
-            width: 5px;
-        }
+      &::-webkit-scrollbar {
+          width: 5px;
+      }
 
-        &::-webkit-scrollbar-thumb {
-            background: ${({ theme }) => theme.colors.onbackgroundFade};
-            border-radius: 4px;
-        }
+      &::-webkit-scrollbar-thumb {
+          background: ${({ theme }) => theme.colors.onbackgroundFade};
+          border-radius: 4px;
+      }
 
-        scrollbar-width: thin;
-        scrollbar-color: ${({ theme }) => theme.colors.onbackgroundFade};
-        scrollbar-track-color: transparent;
-
-        @keyframes fadeIn {
-            0% {
-	            overflow: hidden;  
-            }
-            100% {
-                overflow: auto;
-            }
-        }
+      scrollbar-width: thin;
+      scrollbar-color: ${({ theme }) => theme.colors.onbackgroundFade};
+      scrollbar-track-color: transparent;
     }
 
     body, input, button {
