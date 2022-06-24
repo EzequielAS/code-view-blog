@@ -10,6 +10,7 @@ type ContainerProps = {
 
 export const Container = styled.article<ContainerProps>`
     width: calc(50% - 2rem);
+    max-height: 550px;
     margin-right: 1rem;
     margin-left: 1rem;
     margin-bottom: 2rem;
