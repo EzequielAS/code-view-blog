@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   color: ${({ theme }) => theme.colors.onbackground};
   border: 1px solid ${({ theme }) => theme.colors.onbackground};
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   border-radius: 10px;
   padding: 0.3rem;
   width: max-content;
