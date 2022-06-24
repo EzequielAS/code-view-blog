@@ -97,7 +97,7 @@ export default function Post({ post }: PostProps) {
                   field={postContent.body}
                   components={{
                     paragraph: ({ children }) => (
-                      <Typography weight='light'>
+                      <Typography weight='light' color='text'>
                         {children}
                       </Typography>
                     ),

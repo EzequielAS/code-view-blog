@@ -14,15 +14,16 @@ export default {
         onbackgroundFade: 'rgba(255 255 255 / 40%)',
 
         background: '#121212',
+        text: '#E9E9E9',
      },
      typography: {
         sizes: {
             xxsmall: '0.6rem',
             xsmall: '0.8rem',
-            small: '1.2rem',
-            medium: '1.6rem',
-            large: '2rem',
-            xlarge: '3.2rem',
+            small: '1rem',
+            medium: '1.4rem',
+            large: '1.8rem',
+            xlarge: '2.4rem',
             xxlarge: '4.0rem'
           },
           weights: {

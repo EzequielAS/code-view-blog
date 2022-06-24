@@ -25,6 +25,9 @@ export const PostInfo = styled.div`
 
   h2 {
     margin-top: 5rem;
+    font-style: italic;
+    font-weight: ${({ theme }) => theme.typography.weights.light};
+    font-size: ${({ theme }) => theme.typography.sizes.small};
   }
 
   @media (max-width: 670px) {
