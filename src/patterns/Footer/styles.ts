@@ -7,7 +7,7 @@ export const Container = styled.footer`
 `
 
 export const Content = styled.div`
-  max-width: 1200px;
+  max-width: 1100px;
   width: 96%;
   margin: 0 auto;
 

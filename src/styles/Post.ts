@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  max-width: 1200px;
+  max-width: 1100px;
   width: 96%;
   margin: 3rem auto 4rem auto;
 `
@@ -53,12 +53,12 @@ export const ArticleStyled = styled.article`
   flex-direction: column;
 
   h3 {
-    margin: 3.5rem 0 1rem 0;
+    margin: 3.5rem 0 1.4rem 0;
   }
 
   p {
     text-align: justify;
-    line-height: 1.3rem;
+    line-height: 1.8rem;
   }
 
   img {

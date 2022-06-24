@@ -14,26 +14,26 @@ export const HeaderStyled = styled.header`
 `
 
 export const Content = styled.div`
-    max-width: 1200px;
-    width: 96%;
-    margin: 0 auto;
-    animation-duration: 1.2s;
-    animation-name: appear;
+  max-width: 1100px;
+  width: 96%;
+  margin: 0 auto;
+  animation-duration: 1.2s;
+  animation-name: appear;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
 
-    @keyframes appear {
-        from {
-            opacity: 0;
-        }
+  @keyframes appear {
+      from {
+          opacity: 0;
+      }
 
-        to {
-           opacity: 1;
-        }
-    }
+      to {
+          opacity: 1;
+      }
+  }
 `
 
 export const FadeLine = styled.hr`
