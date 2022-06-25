@@ -47,7 +47,6 @@ export const Details = styled.div`
 `
 
 export const PostContent = styled.div`
-  margin-top: 4rem;
 `
 
 export const ArticleStyled = styled.article`

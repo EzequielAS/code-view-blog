@@ -36,4 +36,5 @@ export const BlogInfo = styled.div`
 
 export const Anchor = styled.a`
   text-decoration: underline;
+  color: ${({ theme }) => theme.colors.secondary}
 `
