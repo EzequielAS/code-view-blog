@@ -3,6 +3,7 @@ import { RTNode } from '@prismicio/types'
 import { format } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import { Typography } from '../../components/Typography'
 import { Head } from '../../infra/components/Head'
 import { createClient } from '../../services/prismic'
@@ -34,7 +35,8 @@ interface PostProps {
 
 export default function Post({ post }: PostProps) {
   const datePost = new Date(post.date)
-
+  const route = useRouter()
+  
   const publishedDateFormatted = format(
     datePost, 
     "d 'de' LLLL 'às' HH:mm'h'", {
@@ -44,7 +46,13 @@ export default function Post({ post }: PostProps) {
 
   return (
     <>
-      <Head title={`CodeView | ${post.title}`} />
+      <Head title={`CodeView | ${post.title}`}>
+        <meta name="title" property="og:title" content={post.title} />
+        <meta name="type" property="og:type" content="article" />
+        <meta name="description" property="og:description" content={post.subtitle} />
+        <meta name="image" property="og:image" content={post.image} />
+        <meta name="url" property="og:url" content={`https://code-view-blog.vercel.app/post/${route.query.slug}`} />
+      </Head>
 
       <Container>
         <ImgStyled 
