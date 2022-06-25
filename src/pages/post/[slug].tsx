@@ -143,22 +143,28 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const client = createClient()
   const slug = params?.slug as string
 
-  const response = await client.getByUID('post', slug)
-
-
-  const post = {
-    date: response.first_publication_date,
-    title: response.data.title,
-    subtitle: response.data.subtitle,
-    author: response.data.author,
-    image: response.data.image.url,
-    content: response.data.content
+  try {
+    const response = await client.getByUID('post', slug)
+  
+    const post = {
+      date: response.first_publication_date,
+      title: response.data.title,
+      subtitle: response.data.subtitle,
+      author: response.data.author,
+      image: response.data.image.url,
+      content: response.data.content
+    }
+  
+    return {
+      props: { 
+        post
+      }, 
+      revalidate: 60 * 60 * 24 // 24 horas
+    }
   }
-
-  return {
-    props: { 
-      post
-    }, 
-    revalidate: 60 * 60 * 24 // 24 horas
+  catch {
+    return {
+      notFound: true
+    }
   }
 }
