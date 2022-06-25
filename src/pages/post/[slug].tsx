@@ -47,11 +47,18 @@ export default function Post({ post }: PostProps) {
   return (
     <>
       <Head title={`CodeView | ${post.title}`}>
-        <meta name="title" property="og:title" content={post.title} />
-        <meta name="type" property="og:type" content="article" />
-        <meta name="description" property="og:description" content={post.subtitle} />
-        <meta name="image" property="og:image" content={post.image} />
-        <meta name="url" property="og:url" content={`https://code-view-blog.vercel.app/post/${route.query.slug}`} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content={post.subtitle} />
+        <meta property="og:image" content={post.image} />
+        <meta property="og:url" content={`https://code-view-blog.vercel.app/post/${route.query.slug}`} />
+
+        <meta name='twitter:title' content={post.title} />
+        <meta name='twitter:url' content={`https://code-view-blog.vercel.app/post/${route.query.slug}`} />
+        <meta name='twitter:description' content={post.subtitle} />
+        <meta name="twitter:image" content={post.image} />
+
+        <meta name='description' content={post.title} />
       </Head>
 
       <Container>
