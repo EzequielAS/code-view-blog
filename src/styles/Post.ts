@@ -65,7 +65,7 @@ export const ArticleStyled = styled.article`
 
   img {
     width: 100%;
-    max-height: 35rem;
+    max-height: 45rem;
     margin: 1rem 0;
     object-fit: contain;
     object-position: center;
