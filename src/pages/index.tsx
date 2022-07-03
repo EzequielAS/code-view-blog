@@ -12,7 +12,20 @@ export default function Home({
 }: PageWithPostProps) {
   return (
     <>
-      <Head title='CodeView' />
+      <Head title='CodeView'>
+        <meta property="og:title" content="CodeView" />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content="Conteúdos sobre tecnologia sob a visão de pessoas em constante aprendizado!" />
+        <meta property="og:image" content="/logo.png" />
+        <meta property="og:url" content='https://code-view-blog.vercel.app/post/' />
+
+        <meta name='twitter:title' content="CodeView" />
+        <meta name='twitter:url' content="https://code-view-blog.vercel.app/post/" />
+        <meta name='twitter:description' content="Conteúdos sobre tecnologia sob a visão de pessoas em constante aprendizado!" />
+        <meta name="twitter:image" content="/logo.png" />
+
+        <meta name='description' content="CodeView" />
+      </Head>
 
       <Posts 
           posts={posts}
