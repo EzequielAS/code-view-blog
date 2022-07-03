@@ -16,13 +16,13 @@ export default function Home({
         <meta property="og:title" content="CodeView" />
         <meta property="og:type" content="article" />
         <meta property="og:description" content="Conteúdos sobre tecnologia sob a visão de pessoas em constante aprendizado!" />
-        <meta property="og:image" content="../../public/teste.png" />
+        <meta property="og:image" content="https://images.prismic.io/code-view/e0603202-09e1-4cc7-b322-7105003cb70d_archfront.png?auto=compress,format" />
         <meta property="og:url" content={process.env.NEXT_PUBLIC_URL_BASE} />
 
         <meta name='twitter:title' content="CodeView" />
         <meta name='twitter:url' content={process.env.NEXT_PUBLIC_URL_BASE} />
         <meta name='twitter:description' content="Conteúdos sobre tecnologia sob a visão de pessoas em constante aprendizado!" />
-        <meta name="twitter:image" content="../../public/teste.png" />
+        <meta name="twitter:image" content="https://images.prismic.io/code-view/e0603202-09e1-4cc7-b322-7105003cb70d_archfront.png?auto=compress,format" />
 
         <meta name='description' content="CodeView" />
       </Head>
