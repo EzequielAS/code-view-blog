@@ -17,10 +17,10 @@ export default function Home({
         <meta property="og:type" content="article" />
         <meta property="og:description" content="Conteúdos sobre tecnologia sob a visão de pessoas em constante aprendizado!" />
         <meta property="og:image" content="/logo.png" />
-        <meta property="og:url" content='https://code-view-blog.vercel.app/post/' />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_URL_BASE} />
 
         <meta name='twitter:title' content="CodeView" />
-        <meta name='twitter:url' content="https://code-view-blog.vercel.app/post/" />
+        <meta name='twitter:url' content={process.env.NEXT_PUBLIC_URL_BASE} />
         <meta name='twitter:description' content="Conteúdos sobre tecnologia sob a visão de pessoas em constante aprendizado!" />
         <meta name="twitter:image" content="/logo.png" />
 

@@ -52,10 +52,10 @@ export default function Post({ post }: PostProps) {
         <meta property="og:type" content="article" />
         <meta property="og:description" content={post.subtitle} />
         <meta property="og:image" content={post.image} />
-        <meta property="og:url" content={`https://code-view-blog.vercel.app/post/${route.query.slug}`} />
+        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_URL_BASE}/post/${route.query.slug}`} />
 
         <meta name='twitter:title' content={post.title} />
-        <meta name='twitter:url' content={`https://code-view-blog.vercel.app/post/${route.query.slug}`} />
+        <meta name='twitter:url' content={`${process.env.NEXT_PUBLIC_URL_BASE}/post/${route.query.slug}`} />
         <meta name='twitter:description' content={post.subtitle} />
         <meta name="twitter:image" content={post.image} />
 
