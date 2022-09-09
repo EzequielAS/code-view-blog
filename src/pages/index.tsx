@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { PageWithPostProps } from '../global/interfaces'
 import { Head } from '../infra/components/Head'
 import { Pagination } from '../patterns/Pagination'
@@ -40,7 +40,14 @@ export default function Home({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({}) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+      paths: [],
+      fallback: 'blocking'
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({}) => {
   const client = createClient()
 
   const response = await client.get({
@@ -73,5 +80,6 @@ export const getServerSideProps: GetServerSideProps = async ({}) => {
       next_page: response.next_page,
       total_pages: response.total_pages
     }, 
+    revalidate: 60 * 10 // 10 minutes
   }
 }
