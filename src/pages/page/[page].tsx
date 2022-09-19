@@ -75,6 +75,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       next_page: response.next_page,
       total_pages: response.total_pages
     }, 
-    revalidate: 60 * 30 // 30 minutos
+    revalidate: 60 * 60 // 1 hour
   }
 }
