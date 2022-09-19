@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetStaticProps } from 'next'
 import { PageWithPostProps } from '../global/interfaces'
 import { Head } from '../infra/components/Head'
 import { Pagination } from '../patterns/Pagination'
@@ -38,13 +38,6 @@ export default function Home({
       />
     </>
   )
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-      paths: [],
-      fallback: 'blocking'
-  }
 }
 
 export const getStaticProps: GetStaticProps = async ({}) => {
