@@ -14,7 +14,7 @@ export default function Tag({
 	const navigate = useRouter()
   const arrayQuery = navigate.query.tag || []
   const currentTag = arrayQuery[0]
-  const currentPage = Number(arrayQuery[1]) || 1
+  const currentPage = Number(arrayQuery[1])
 
   return (
 	<>
@@ -45,9 +45,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const client = createClient()
   const arrayParams = params?.tag || []
   const currentTag = arrayParams[0]
-  const currentPage = Number(arrayParams[1]) || 1
+  const currentPage = Number(arrayParams[1])
 
-  const response = await client.getByTag(currentTag ,{
+  try {
+    const response = await client.getByTag(currentTag ,{
       pageSize: 9,
       page: currentPage,
       fetch: [
@@ -55,31 +56,34 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         'post.author', 
         'post.image'
       ],
-  })
-
-  if(response.results.length === 0)
-    return { notFound: true }
-
-  const posts = response.results.map((post, index) => {
-    return {
-      slug: post.uid,
-      data: {
-        tag: post.tags[0],
-        date: post.first_publication_date,
-        title: post.data.title,
-        author: post.data.author,
-        imageURL: post.data.image.url,
-        index
+    })
+  
+    if(response.results.length === 0)
+      return { notFound: true }
+  
+    const posts = response.results.map((post, index) => {
+      return {
+        slug: post.uid,
+        data: {
+          tag: post.tags[0],
+          date: post.first_publication_date,
+          title: post.data.title,
+          author: post.data.author,
+          imageURL: post.data.image.url,
+          index
+        }
       }
+    })
+  
+    return {
+      props: { 
+        posts,
+        next_page: response.next_page,
+        total_pages: response.total_pages
+      }, 
+      revalidate: 60 * 60 // 1 hour
     }
-  })
-
-  return {
-    props: { 
-      posts,
-      next_page: response.next_page,
-      total_pages: response.total_pages
-    }, 
-    revalidate: 60 * 60 // 1 hour
+  } catch {
+    return { notFound: true }
   }
 }
