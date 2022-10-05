@@ -42,39 +42,43 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const client = createClient()
   const currentPage = Number(params?.page)
 
-  const response = await client.get({
-    pageSize: 9,
-    page: currentPage,
-    fetch: [
-      'post.title', 
-      'post.author', 
-      'post.image'
-    ],
-  })
-
-  if(response.results.length === 0)
-    return { notFound: true }
-
-  const posts = response.results.map((post, index) => {
-    return {
-      slug: post.uid,
-      data: {
-        tag: post.tags[0],
-        date: post.first_publication_date,
-        title: post.data.title,
-        author: post.data.author,
-        imageURL: post.data.image.url,
-        index
+  try {
+    const response = await client.get({
+      pageSize: 9,
+      page: currentPage,
+      fetch: [
+        'post.title', 
+        'post.author', 
+        'post.image'
+      ],
+    })
+  
+    if(response.results.length === 0)
+      return { notFound: true }
+  
+    const posts = response.results.map((post, index) => {
+      return {
+        slug: post.uid,
+        data: {
+          tag: post.tags[0],
+          date: post.first_publication_date,
+          title: post.data.title,
+          author: post.data.author,
+          imageURL: post.data.image.url,
+          index
+        }
       }
+    })
+  
+    return {
+      props: { 
+        posts,
+        next_page: response.next_page,
+        total_pages: response.total_pages
+      }, 
+      revalidate: 60 * 60 // 1 hour
     }
-  })
-
-  return {
-    props: { 
-      posts,
-      next_page: response.next_page,
-      total_pages: response.total_pages
-    }, 
-    revalidate: 60 * 60 // 1 hour
+  } catch {
+    return { notFound: true }
   }
 }
