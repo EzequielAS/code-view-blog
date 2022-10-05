@@ -19,14 +19,16 @@ export function Header() {
 
   const isRouteMatching = (button: string) => {
     const sanitizedRoute = currentRoute.slice(1)
+    const hasPaginationOnRoute = sanitizedRoute.split('/').length === 3
+    const buttonRoute = `tag/${button}`
 
-    if(sanitizedRoute.split('/').length === 3) {
-      const rootRoute = sanitizedRoute.slice(0, -2)
+    if (hasPaginationOnRoute) {
+      const routeWithoutPagination = sanitizedRoute.slice(0, -2)
 
-      return rootRoute === `tag/${button}`
+      return routeWithoutPagination === buttonRoute
     }
 
-    return sanitizedRoute === `tag/${button}`
+    return sanitizedRoute === buttonRoute
   }
 
   const ButtonsContainer = (
