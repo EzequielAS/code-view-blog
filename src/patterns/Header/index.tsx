@@ -39,7 +39,7 @@ export function Header() {
         return( 
           <Button 
             key={button}
-            link={`/tag/${button}`}
+            link={`/tag/${button}/1`}
             title={button}
             buttonStyle='text'
             color={isRouteActive ? 'primary' : 'onbackground'}
